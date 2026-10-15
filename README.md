@@ -1,6 +1,6 @@
 # Entropic Session — Activation Steering
 
-Apresentação interativa, versão **1.18**, publicada em:
+Apresentação interativa, versão **1.20**, publicada em:
 
 https://costaleirbag.github.io/ceg-entropic-session/
 

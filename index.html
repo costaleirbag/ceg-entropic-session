@@ -627,6 +627,227 @@ body.deck-high-contrast { --paper: #fffef7; --paper-deep: #e7e6de; --paper-white
   .ceg-scene[data-ceg-scene="decomposition"] .ceg-scene__fallback .ceg-scene__equation { font-size: 30px; margin-top: 16px; }
   .ceg-scene .ceg-scene__formula-definitions { overflow: visible; white-space: normal; }
 }
+</style><style>/* Construction scenes are isolated from the frozen application/toy scenes. */
+.ceg-construction {
+  --construction-paper:#fbfbfc;
+  --construction-ink:#111319;
+  --construction-muted:#596273;
+  --construction-rule:#d8dce5;
+  --construction-blue:#2458df;
+  --construction-soft:#eaf0ff;
+  box-sizing:border-box;
+  height:900px;
+  min-width:0;
+  padding:57px 64px 63px;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:27px;
+  background:var(--construction-paper);
+  color:var(--construction-ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-variant-numeric:tabular-nums;
+}
+.ceg-construction *, .ceg-construction *::before, .ceg-construction *::after { box-sizing:border-box; }
+.ceg-construction [hidden] { display:none !important; }
+.ceg-construction .ceg-construction__kicker { margin:0 0 13px; color:var(--construction-muted); font-size:18px; line-height:1.25; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.ceg-construction h2.ceg-construction__title { max-width:none; margin:0; font-size:64px; line-height:1.08; letter-spacing:-.045em; font-weight:650; color:var(--construction-ink); }
+.ceg-construction .ceg-construction__title span { color:var(--construction-blue); }
+.ceg-construction .ceg-construction__interactive { min-width:0; min-height:0; display:grid; grid-template-columns:280px minmax(0,1fr); gap:40px; }
+.ceg-construction .ceg-construction__controls { min-width:0; display:flex; flex-direction:column; align-items:stretch; gap:20px; padding-top:4px; }
+.ceg-construction .ceg-construction__controls h3 { margin:0; color:var(--construction-ink); font-size:33px; line-height:1.15; font-weight:600; letter-spacing:-.025em; }
+.ceg-construction .ceg-construction__step { margin:0; color:var(--construction-blue); font-size:20px; line-height:1.25; font-weight:600; }
+.ceg-construction p.ceg-construction__description { margin:0; color:var(--construction-muted); font-size:24px; line-height:1.36; }
+.ceg-construction button { appearance:none; min-height:50px; padding:12px 16px; border:1px solid var(--construction-rule); border-radius:5px; background:transparent; color:var(--construction-ink); font:500 21px/1.2 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; text-align:left; cursor:pointer; }
+.ceg-construction button:hover:not(:disabled) { background:var(--construction-soft); border-color:var(--construction-blue); }
+.ceg-construction button[aria-pressed="true"], .ceg-construction button.ceg-construction__primary { color:#fff; border-color:var(--construction-blue); background:var(--construction-blue); font-weight:600; }
+.ceg-construction button.ceg-construction__primary:hover:not(:disabled) { background:#1948c7; }
+.ceg-construction button:disabled { opacity:.4; cursor:default; }
+.ceg-construction .ceg-construction__buttons { display:flex; gap:12px; }
+.ceg-construction .ceg-construction__buttons button { flex:1; text-align:center; }
+.ceg-construction button.ceg-construction__reset { align-self:flex-start; min-height:38px; padding:4px 0; border:0; color:var(--construction-muted); font-size:20px; text-decoration:underline; text-underline-offset:.2em; }
+.ceg-construction :is(button,a,[tabindex]):focus-visible { outline:3px solid var(--construction-blue); outline-offset:5px; }
+.ceg-construction .ceg-construction__scope { margin:auto 0 0; padding-top:14px; border-top:1px solid var(--construction-rule); color:var(--construction-ink); font-size:22px; line-height:1.35; }
+.ceg-construction .ceg-construction__canvas { min-width:0; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:24px; }
+.ceg-construction svg.ceg-construction__diagram { display:block; width:100%; height:auto; max-height:100%; overflow:visible; font-family:inherit; }
+.ceg-construction .ceg-construction__diagram text { fill:var(--construction-ink); font-family:inherit; }
+.ceg-construction .cc-svg-title { font-size:29px; font-weight:600; letter-spacing:-.02em; }
+.ceg-construction .cc-svg-label { font-size:25px; }
+.ceg-construction .cc-svg-small { font-size:22px; }
+.ceg-construction .cc-svg-formula { font-size:36px; letter-spacing:-.02em; }
+.ceg-construction .ceg-construction__diagram .cc-muted { fill:var(--construction-muted); }
+.ceg-construction .ceg-construction__diagram .cc-blue { fill:var(--construction-blue); }
+.ceg-construction .cc-rule { fill:none; stroke:var(--construction-rule); stroke-width:1.5; }
+.ceg-construction .cc-arrow { fill:none; stroke:#9aa3b4; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.ceg-construction .cc-token rect { fill:#f0f1f4; stroke:#cbd0da; stroke-width:1.25; rx:4; }
+.ceg-construction .cc-token text { font-size:29px; text-anchor:middle; }
+.ceg-construction .cc-token.is-active rect { fill:var(--construction-soft); stroke:var(--construction-blue); stroke-width:2.5; }
+.ceg-construction .cc-token.is-active text { fill:var(--construction-blue); font-weight:600; }
+.ceg-construction .cc-capture-link { fill:none; stroke:var(--construction-blue); stroke-width:2.5; }
+.ceg-construction .cc-bracket { fill:none; stroke:#8b95a5; stroke-width:2; }
+.ceg-construction .cc-column { fill:#eff0f4; stroke:#cbd0da; stroke-width:1.25; }
+.ceg-construction .cc-column.cc-active { fill:var(--construction-soft); stroke:var(--construction-blue); stroke-width:2; }
+.ceg-construction .ceg-construction__teacher { margin:0; padding-top:20px; border-top:1px solid var(--construction-rule); font-size:29px; line-height:1.35; color:var(--construction-ink); }
+.ceg-construction .ceg-construction__teacher-label { display:block; margin-bottom:8px; font-size:18px; font-weight:600; color:var(--construction-blue); }
+.ceg-construction .ceg-construction__stage-nav { display:flex; gap:12px; margin-bottom:7px; }
+.ceg-construction .ceg-construction__stage-nav span { flex:1; padding-bottom:12px; border-bottom:2px solid var(--construction-rule); color:var(--construction-muted); font-size:18px; line-height:1.2; }
+.ceg-construction .ceg-construction__stage-nav span.is-active { color:var(--construction-blue); border-color:var(--construction-blue); font-weight:600; }
+.ceg-construction .ceg-construction__panel { min-height:0; }
+.ceg-construction .ceg-construction__foot { margin:0; padding-top:15px; border-top:1px solid var(--construction-rule); color:var(--construction-muted); font-size:17px; line-height:1.35; }
+.ceg-construction .ceg-construction__foot a { color:inherit; text-underline-offset:.18em; }
+.ceg-construction .ceg-construction__foot strong { color:var(--construction-ink); font-weight:600; }
+.ceg-construction .ceg-construction__sr { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.ceg-construction .ceg-construction__fallback { min-width:0; }
+.ceg-construction:not([data-ceg-construction-ready="true"]) { height:auto; min-height:900px; }
+.ceg-construction[data-ceg-construction-ready="true"] > .ceg-construction__fallback { display:none; }
+.ceg-construction .ceg-construction__fallback p { margin:0 0 20px; font-size:26px; line-height:1.38; }
+.ceg-construction .ceg-construction__fallback .ceg-construction__teacher { font-size:28px; margin-top:22px; padding-top:18px; }
+.ceg-construction .ceg-construction__table-region { min-width:0; overflow-x:auto; overscroll-behavior-x:contain; }
+.ceg-construction .ceg-construction__table { width:100%; border-collapse:collapse; font-size:26px; line-height:1.35; }
+.ceg-construction .ceg-construction__table th { color:var(--construction-muted); font-size:21px; font-weight:600; text-align:left; padding:10px 18px 10px 0; border-bottom:1px solid var(--construction-rule); }
+.ceg-construction .ceg-construction__table td { vertical-align:top; padding:15px 18px 15px 0; border-bottom:1px solid var(--construction-rule); }
+.ceg-construction .ceg-construction__table tbody th { color:var(--construction-ink); font-size:24px; vertical-align:top; padding-top:15px; }
+.ceg-construction .ceg-construction__table sub,.ceg-construction .ceg-construction__table sup { font-size:.65em; }
+.ceg-construction .ceg-construction__scroll-hint { display:none; }
+.ceg-construction .ceg-construction__code-region { margin:18px 0; overflow-x:auto; font-size:23px; line-height:1.4; white-space:nowrap; overscroll-behavior-x:contain; }
+.ceg-construction .ceg-construction__code-region code { background:transparent; padding:0; font-size:inherit; }
+.deck-mode-read .ceg-construction { display:block; height:auto; min-height:0; padding:54px 62px; }
+.deck-mode-read .ceg-construction .ceg-construction__header { margin-bottom:35px; }
+.deck-mode-read .ceg-construction h2.ceg-construction__title { font-size:47px; }
+.deck-mode-read .ceg-construction .ceg-construction__interactive { display:none !important; }
+.deck-mode-read .ceg-construction .ceg-construction__fallback { display:block !important; }
+.deck-mode-read .ceg-construction .ceg-construction__foot { margin-top:32px; }
+.deck-high-contrast .ceg-construction { --construction-paper:#fff; --construction-ink:#080a10; --construction-muted:#364050; --construction-rule:#aeb6c4; --construction-blue:#1646c3; }
+@media(max-width:700px) {
+  .deck-mode-read .ceg-construction { padding:30px 23px 35px; }
+  .deck-mode-read .ceg-construction .ceg-construction__kicker { font-size:14px; letter-spacing:.04em; }
+  .deck-mode-read .ceg-construction h2.ceg-construction__title { font-size:34px; line-height:1.12; }
+  .deck-mode-read .ceg-construction .ceg-construction__fallback p { font-size:21px; }
+  .deck-mode-read .ceg-construction .ceg-construction__fallback .ceg-construction__teacher { font-size:23px; }
+  .deck-mode-read .ceg-construction .ceg-construction__table { min-width:780px; font-size:20px; }
+  .deck-mode-read .ceg-construction .ceg-construction__table th { font-size:17px; }
+  .deck-mode-read .ceg-construction .ceg-construction__table tbody th { position:sticky; left:0; font-size:20px; background:var(--construction-paper); border-right:1px solid var(--construction-rule); }
+  .deck-mode-read .ceg-construction .ceg-construction__table :is(th,td) { padding:12px 14px 12px 0; }
+  .deck-mode-read .ceg-construction .ceg-construction__scroll-hint { display:block; margin:12px 0 24px; font-size:17px; color:var(--construction-muted); }
+  .deck-mode-read .ceg-construction .ceg-construction__foot { font-size:16px; overflow-wrap:anywhere; }
+  .deck-mode-read .ceg-construction .ceg-construction__code-region { font-size:20px; }
+}
+@media(prefers-reduced-motion:reduce) { .ceg-construction *, .ceg-construction *::before, .ceg-construction *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+@media print {
+  .ceg-construction, .ceg-construction:not([data-ceg-construction-ready="true"]), .deck-mode-read .ceg-construction { display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:27px; height:900px; min-height:0; padding:57px 64px 63px !important; background:#fff; }
+  .ceg-construction .ceg-construction__interactive { display:none !important; }
+  .ceg-construction .ceg-construction__fallback { display:block !important; }
+  .ceg-construction .ceg-construction__header, .deck-mode-read .ceg-construction .ceg-construction__header { margin-bottom:0; }
+  .ceg-construction h2.ceg-construction__title, .deck-mode-read .ceg-construction h2.ceg-construction__title { font-size:64px; }
+  .ceg-construction .ceg-construction__foot, .deck-mode-read .ceg-construction .ceg-construction__foot { margin-top:0; }
+  .ceg-construction .ceg-construction__table-region { overflow:visible; }
+  .ceg-construction .ceg-construction__scroll-hint { display:none !important; }
+  .ceg-construction .ceg-construction__fallback p { font-size:24px; line-height:1.32; margin-bottom:14px; }
+  .ceg-construction .ceg-construction__fallback .ceg-construction__teacher { font-size:26px; margin-top:16px; padding-top:14px; }
+  .ceg-construction .ceg-construction__table { font-size:24px; line-height:1.3; }
+  .ceg-construction .ceg-construction__table :is(th,td) { padding-top:11px; padding-bottom:11px; }
+  .ceg-construction .ceg-construction__code-region { overflow:visible; margin:14px 0; }
+}
+</style><style>/* One conceptual comparison; isolated from the frozen scene families. */
+.ceg-comparison {
+  --comparison-paper:#fbfbfc;
+  --comparison-ink:#111319;
+  --comparison-muted:#596273;
+  --comparison-rule:#d8dce5;
+  --comparison-blue:#2458df;
+  --comparison-soft:#eaf0ff;
+  box-sizing:border-box;
+  height:900px;
+  min-width:0;
+  padding:57px 64px 63px;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:27px;
+  color:var(--comparison-ink);
+  background:var(--comparison-paper);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+.ceg-comparison *, .ceg-comparison *::before, .ceg-comparison *::after { box-sizing:border-box; }
+.ceg-comparison [hidden] { display:none !important; }
+.ceg-comparison .ceg-comparison__kicker { margin:0 0 13px; font-size:18px; line-height:1.25; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--comparison-muted); }
+.ceg-comparison h2.ceg-comparison__title { max-width:none; margin:0; font-size:64px; line-height:1.08; font-weight:650; letter-spacing:-.045em; color:var(--comparison-ink); }
+.ceg-comparison .ceg-comparison__title span { color:var(--comparison-blue); }
+.ceg-comparison .ceg-comparison__interactive { display:grid; grid-template-columns:280px minmax(0,1fr); gap:40px; min-width:0; min-height:0; }
+.ceg-comparison .ceg-comparison__controls { display:flex; flex-direction:column; align-items:stretch; gap:20px; min-width:0; padding-top:4px; }
+.ceg-comparison .ceg-comparison__control-label { margin:0; font-size:23px; line-height:1.25; color:var(--comparison-muted); }
+.ceg-comparison .ceg-comparison__selectors { display:flex; flex-direction:column; gap:12px; }
+.ceg-comparison button { appearance:none; min-height:54px; padding:12px 17px; border:1px solid var(--comparison-rule); border-radius:5px; background:transparent; color:var(--comparison-ink); text-align:left; font:500 23px/1.2 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; cursor:pointer; }
+.ceg-comparison button:hover { border-color:var(--comparison-blue); background:var(--comparison-soft); }
+.ceg-comparison button[aria-pressed="true"] { color:#fff; background:var(--comparison-blue); border-color:var(--comparison-blue); font-weight:600; }
+.ceg-comparison :is(button,a,[tabindex]):focus-visible { outline:3px solid var(--comparison-blue); outline-offset:5px; }
+.ceg-comparison p.ceg-comparison__description { margin:0; font-size:24px; line-height:1.36; color:var(--comparison-ink); }
+.ceg-comparison p.ceg-comparison__scope { margin:auto 0 0; padding-top:14px; border-top:1px solid var(--comparison-rule); font-size:22px; line-height:1.35; color:var(--comparison-muted); }
+.ceg-comparison .ceg-comparison__canvas { min-width:0; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:24px; }
+.ceg-comparison svg.ceg-comparison__diagram { display:block; width:100%; height:auto; max-height:100%; overflow:visible; font-family:inherit; }
+.ceg-comparison .ceg-comparison__diagram text { fill:var(--comparison-ink); font-family:inherit; }
+.ceg-comparison .comparison-svg-title { font-size:29px; font-weight:600; letter-spacing:-.02em; }
+.ceg-comparison .comparison-svg-label { font-size:25px; }
+.ceg-comparison .comparison-svg-small { font-size:22px; }
+.ceg-comparison .comparison-svg-formula { font-size:39px; letter-spacing:-.02em; }
+.ceg-comparison .ceg-comparison__diagram .comparison-muted { fill:var(--comparison-muted); }
+.ceg-comparison .ceg-comparison__diagram .comparison-blue { fill:var(--comparison-blue); }
+.ceg-comparison .comparison-arrow { fill:none; stroke:#9aa3b4; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.ceg-comparison .comparison-node rect { fill:var(--comparison-paper); stroke:#c4cad6; stroke-width:2; rx:5; }
+.ceg-comparison .comparison-node.is-active rect { fill:var(--comparison-soft); stroke:var(--comparison-blue); stroke-width:2.75; }
+.ceg-comparison .comparison-node.is-active text { fill:var(--comparison-blue); }
+.ceg-comparison .comparison-adapter rect { fill:var(--comparison-soft); stroke:var(--comparison-blue); stroke-width:2; rx:4; }
+.ceg-comparison .comparison-adapter text { fill:var(--comparison-blue); }
+.ceg-comparison .comparison-adapter path, .ceg-comparison .comparison-delta path { fill:none; stroke:var(--comparison-blue); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.ceg-comparison .comparison-delta text { fill:var(--comparison-blue); }
+.ceg-comparison p.ceg-comparison__takeaway { margin:0; padding-top:20px; border-top:1px solid var(--comparison-rule); font-size:31px; line-height:1.3; letter-spacing:-.015em; color:var(--comparison-ink); }
+.ceg-comparison .ceg-comparison__foot { margin:0; padding-top:15px; border-top:1px solid var(--comparison-rule); font-size:17px; line-height:1.35; color:var(--comparison-muted); }
+.ceg-comparison .ceg-comparison__foot strong { font-weight:600; color:var(--comparison-ink); }
+.ceg-comparison .ceg-comparison__foot a { color:inherit; text-underline-offset:.18em; }
+.ceg-comparison .ceg-comparison__support { white-space:nowrap; }
+.ceg-comparison .ceg-comparison__sr { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.ceg-comparison .ceg-comparison__fallback { min-width:0; }
+.ceg-comparison:not([data-ceg-comparison-ready="true"]) { height:auto; min-height:900px; }
+.ceg-comparison[data-ceg-comparison-ready="true"] > .ceg-comparison__fallback { display:none; }
+.ceg-comparison .ceg-comparison__table-region { min-width:0; overflow-x:auto; overscroll-behavior-x:contain; }
+.ceg-comparison .ceg-comparison__table { width:100%; border-collapse:collapse; font-size:26px; line-height:1.35; }
+.ceg-comparison .ceg-comparison__table th { padding:11px 18px 11px 0; border-bottom:1px solid var(--comparison-rule); text-align:left; color:var(--comparison-muted); font-size:21px; font-weight:600; }
+.ceg-comparison .ceg-comparison__table td { padding:15px 18px 15px 0; border-bottom:1px solid var(--comparison-rule); vertical-align:top; }
+.ceg-comparison .ceg-comparison__table tbody th { padding-top:15px; font-size:25px; color:var(--comparison-ink); vertical-align:top; }
+.ceg-comparison .ceg-comparison__fallback p { margin:20px 0 0; font-size:26px; line-height:1.38; }
+.ceg-comparison .ceg-comparison__scroll-hint { display:none; }
+.deck-mode-read .ceg-comparison { display:block; height:auto; min-height:0; padding:54px 62px; }
+.deck-mode-read .ceg-comparison .ceg-comparison__header { margin-bottom:35px; }
+.deck-mode-read .ceg-comparison h2.ceg-comparison__title { font-size:47px; }
+.deck-mode-read .ceg-comparison .ceg-comparison__interactive { display:none !important; }
+.deck-mode-read .ceg-comparison .ceg-comparison__fallback { display:block !important; }
+.deck-mode-read .ceg-comparison .ceg-comparison__foot { margin-top:32px; }
+.deck-high-contrast .ceg-comparison { --comparison-paper:#fff; --comparison-ink:#080a10; --comparison-muted:#364050; --comparison-rule:#aeb6c4; --comparison-blue:#1646c3; }
+@media(max-width:700px) {
+  .deck-mode-read .ceg-comparison { padding:30px 23px 35px; }
+  .deck-mode-read .ceg-comparison .ceg-comparison__kicker { font-size:14px; letter-spacing:.04em; }
+  .deck-mode-read .ceg-comparison h2.ceg-comparison__title { font-size:34px; line-height:1.12; }
+  .deck-mode-read .ceg-comparison .ceg-comparison__table { min-width:830px; font-size:20px; }
+  .deck-mode-read .ceg-comparison .ceg-comparison__table th { font-size:17px; }
+  .deck-mode-read .ceg-comparison .ceg-comparison__table tbody th { position:sticky; left:0; font-size:20px; background:var(--comparison-paper); border-right:1px solid var(--comparison-rule); }
+  .deck-mode-read .ceg-comparison .ceg-comparison__table :is(th,td) { padding:12px 14px 12px 0; }
+  .deck-mode-read .ceg-comparison .ceg-comparison__fallback p { font-size:21px; }
+  .deck-mode-read .ceg-comparison p.ceg-comparison__takeaway { font-size:24px; }
+  .deck-mode-read .ceg-comparison p.ceg-comparison__scroll-hint { display:block; margin:12px 0 24px; font-size:17px; color:var(--comparison-muted); }
+  .deck-mode-read .ceg-comparison .ceg-comparison__foot { font-size:16px; overflow-wrap:anywhere; }
+}
+@media(prefers-reduced-motion:reduce) { .ceg-comparison *, .ceg-comparison *::before, .ceg-comparison *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+@media print {
+  .ceg-comparison, .ceg-comparison:not([data-ceg-comparison-ready="true"]), .deck-mode-read .ceg-comparison { height:900px; min-height:0; display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:27px; padding:57px 64px 63px !important; background:#fff; }
+  .ceg-comparison .ceg-comparison__interactive { display:none !important; }
+  .ceg-comparison .ceg-comparison__fallback { display:block !important; }
+  .ceg-comparison .ceg-comparison__header, .deck-mode-read .ceg-comparison .ceg-comparison__header { margin-bottom:0; }
+  .ceg-comparison h2.ceg-comparison__title, .deck-mode-read .ceg-comparison h2.ceg-comparison__title { font-size:64px; }
+  .ceg-comparison .ceg-comparison__foot, .deck-mode-read .ceg-comparison .ceg-comparison__foot { margin-top:0; }
+  .ceg-comparison .ceg-comparison__table-region { overflow:visible; }
+  .ceg-comparison .ceg-comparison__scroll-hint { display:none !important; }
+  .ceg-comparison .ceg-comparison__table { font-size:24px; line-height:1.3; }
+  .ceg-comparison .ceg-comparison__fallback p { font-size:24px; line-height:1.32; }
+  .ceg-comparison .ceg-comparison__fallback .ceg-comparison__takeaway { font-size:29px; }
+}
 </style><script defer>/* Entropic Session. Dependency-free, offline-first presentation controls.
    Author slides as semantic HTML. See design/design-notes.json for the contract. */
 (() => {
@@ -1422,6 +1643,93 @@ body.deck-high-contrast { --paper: #fffef7; --paper-deep: #e7e6de; --paper-white
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => init(), { once: true });
   else init();
 })();
+</script><script defer>/* Manual protocol walkthroughs only. No activations, RNG or scientific jobs. */
+(() => {
+  "use strict";
+  if (window.CEGConstruction) return;
+  const controllers = new Map();
+  const write = (root,name,value) => root.querySelectorAll(`[data-construction-value="${name}"]`).forEach(node => { node.textContent=value; });
+  const announce = (root,text) => { const n=root.querySelector('[data-construction-status]'); if(n)n.textContent=text; };
+  function capture(root) {
+    const state={boundary:"prompt"};
+    function render() {
+      const isPrompt=state.boundary==="prompt";
+      root.querySelectorAll('[data-capture-select]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.captureSelect===state.boundary)));
+      root.querySelectorAll('[data-capture-position]').forEach(node=>node.classList.toggle('is-active',node.dataset.capturePosition===state.boundary));
+      root.querySelectorAll('[data-capture-link]').forEach(node=>node.toggleAttribute('hidden',node.dataset.captureLink!==state.boundary));
+      write(root,"capture-label",isPrompt?"Prompt boundary":"Execution boundary");
+      write(root,"capture-description",isPrompt?"Último token do prompt renderizado, em cada condição.":"Último token da mesma continuação fixa, anexada em cada condição.");
+      write(root,"capture-location",isPrompt?"s = prompt boundary":"s = execution boundary");
+      root.dataset.captureBoundary=state.boundary;
+    }
+    root.querySelectorAll('[data-capture-select]').forEach(button=>button.addEventListener('click',()=>{state.boundary=button.dataset.captureSelect;render();announce(root,`${state.boundary==="prompt"?"Prompt":"Execution"} boundary. Duas capturas correspondentes ao mesmo problema, sob instruções contrastivas.`);}));
+    render();
+    return {state:()=>({type:"capture",...state})};
+  }
+  const steps=[
+    ["Diferenças pareadas","Para cada família e posição, subtraímos h⁻ de h⁺ nos mesmos 24 problemas."],
+    ["Média, depois norma","Fazemos a média das diferenças. Só então normalizamos para obter uma fonte unitária."],
+    ["Oito fontes, uma base","As oito fontes formam U. A SVD retém uma base ortonormal Q; o posto observado foi 8."],
+    ["Combinar dentro do espaço","Coeficientes gaussianos normalizados definem c. A direção no residual é v = Qc."]
+  ];
+  function subspace(root) {
+    const state={step:0};
+    const next=root.querySelector('[data-construction-action="next"]');
+    const previous=root.querySelector('[data-construction-action="previous"]');
+    function render() {
+      write(root,"step",`${String(state.step+1).padStart(2,"0")} / 04`);
+      write(root,"step-title",steps[state.step][0]);write(root,"step-description",steps[state.step][1]);
+      root.querySelectorAll('[data-subspace-panel]').forEach(node=>{node.hidden=Number(node.dataset.subspacePanel)!==state.step;});
+      root.querySelectorAll('[data-subspace-nav]').forEach(node=>{const active=Number(node.dataset.subspaceNav)===state.step;node.classList.toggle('is-active',active);if(active)node.setAttribute('aria-current','step');else node.removeAttribute('aria-current');});
+      next.disabled=state.step===3;previous.disabled=state.step===0;
+      root.dataset.subspaceStep=String(state.step+1);
+    }
+    function go(step) {state.step=Math.max(0,Math.min(3,step));render();announce(root,`Etapa ${state.step+1} de 4. ${steps[state.step][0]}.`);}
+    next.addEventListener('click',()=>go(state.step+1));
+    previous.addEventListener('click',()=>go(state.step-1));
+    root.querySelector('[data-construction-action="reset"]').addEventListener('click',()=>go(0));
+    render();return {state:()=>({type:"subspace",...state})};
+  }
+  function init(scope=document) {
+    const roots=scope.matches?.('.ceg-construction[data-ceg-construction]')?[scope]:Array.from(scope.querySelectorAll('.ceg-construction[data-ceg-construction]'));
+    roots.forEach(root=>{if(controllers.has(root))return;const factory={capture,subspace}[root.dataset.cegConstruction];if(!factory)return;controllers.set(root,factory(root));root.dataset.cegConstructionReady='true';root.querySelector('.ceg-construction__interactive').hidden=false;});
+    return roots.length;
+  }
+  window.CEGConstruction=Object.freeze({init,getState:root=>{if(typeof root==='string')root=document.querySelector(`.ceg-construction[data-ceg-construction="${root}"]`);return controllers.get(root)?.state()||null;}});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>init(),{once:true});else init();
+})();
+</script><script defer>/* A manual conceptual comparison, not an implementation or measured experiment. */
+(() => {
+  "use strict";
+  if(window.CEGComparison)return;
+  const controllers=new Map();
+  const content={
+    prompt:{description:"Varia o texto; mantém os pesos fixos. O prompt também muda as ativações.",scope:"Prompt e steering podem ser combinados. O destaque indica o ponto manipulado diretamente.",input:"Instrução / contexto",inputCaption:"Texto de avaliação varia",weights:"W₀ fixo",weightsCaption:"Sem atualização de pesos",residual:"h",residualCaption:"Ativações dependem da entrada",diagram:"Prompt: variamos instrução ou contexto na entrada. Os pesos ficam fixos; as ativações também mudam."},
+    steering:{description:"Na avaliação, usamos o texto baseline e controlamos direção, dose, site e duração.",scope:"Neste projeto, o vetor vem de contrastes de prompts. O texto de avaliação permanece fixo.",input:"Texto baseline",inputCaption:"Texto de avaliação fixo",weights:"W₀ fixo",weightsCaption:"Sem atualização de pesos",residual:"h + δ",residualCaption:"Saída do bloco 27",diagram:"Steering: o texto baseline e os pesos ficam fixos. Adicionamos delta ao residual na saída do bloco 27. O vetor foi construído a partir de contrastes de prompts."},
+    lora:{description:"Compartilha a base fixa e aprende ΔW = BA. É um comparador proposto; não foi executado aqui.",scope:"ΔW = BA, com escala absorvida. O efeito BAx depende da representação x.",input:"Prompt de avaliação",inputCaption:"Entrada do modelo",weights:"W₀ compartilhado",weightsCaption:"Peso efetivo W₀ + BA",residual:"h",residualCaption:"A adaptação muda ativações",diagram:"LoRA, comparador proposto: pesos base compartilhados e fixos, com adaptação aprendida delta W igual BA, com a escala absorvida. A intervenção direta está no peso efetivo W zero mais BA; seu efeito BAx depende da representação de entrada."}
+  };
+  const write=(root,name,value)=>root.querySelectorAll(`[data-comparison-value="${name}"]`).forEach(node=>{node.textContent=value;});
+  function init(scope=document){
+    const roots=scope.matches?.('.ceg-comparison')?[scope]:Array.from(scope.querySelectorAll('.ceg-comparison'));
+    roots.forEach(root=>{
+      if(controllers.has(root))return;
+      const state={method:"prompt"};
+      function render(){
+        Object.entries(content[state.method]).forEach(([key,value])=>write(root,key,value));
+        root.querySelectorAll('[data-comparison-select]').forEach(node=>node.setAttribute('aria-pressed',String(node.dataset.comparisonSelect===state.method)));
+        root.querySelectorAll('[data-comparison-node]').forEach(node=>node.classList.toggle('is-active',node.dataset.comparisonNode===state.method));
+        root.querySelector('[data-comparison-adapter]').toggleAttribute('hidden',state.method!=="lora");
+        root.querySelector('[data-comparison-delta]').toggleAttribute('hidden',state.method!=="steering");
+        root.dataset.comparisonMethod=state.method;
+      }
+      root.querySelectorAll('[data-comparison-select]').forEach(button=>button.addEventListener('click',()=>{state.method=button.dataset.comparisonSelect;render();write(root,'status',content[state.method].diagram);}));
+      render();controllers.set(root,{state:()=>({...state})});root.dataset.cegComparisonReady="true";root.querySelector('.ceg-comparison__interactive').hidden=false;
+    });
+    return roots.length;
+  }
+  window.CEGComparison=Object.freeze({init,getState:root=>{if(!root)root=document.querySelector('.ceg-comparison');return controllers.get(root)?.state()||null;}});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>init(),{once:true});else init();
+})();
 </script></head><body><main class="deck" id="deck" data-title="Causal Epistemic Geometry" data-essential-route="abertura pergunta mapa panorama intervencao laboratorio instrumento ap-q1-fonte contrastes captura subespaco operador mensuracao q1 geometrias q2 oos alcance transferencia utilidade discussao"><section class="slide cover" data-id="abertura" data-section="A pergunta" data-title="Intervenções internas e a estrutura dos erros de um LLM" data-core="true"><div class="slide-body">
 <p class="eyebrow">Causal Epistemic Geometry · ACS-USP</p>
 <h1>Intervenções internas<br>e a estrutura dos erros<br>de um LLM</h1>
@@ -1446,15 +1754,45 @@ body.deck-high-contrast { --paper: #fffef7; --paper-deep: #e7e6de; --paper-white
 <div><p class="large-number">16 / 16</p><p class="lead">direções novas com associação geométrica positiva frente ao atlas histórico</p></div>
 <div><p>Há controle de perfil no teste confirmatório do Qwen.</p><p>Há estrutura relacional no banco e em direções novas.</p><p class="takeaway">Generalidade entre tarefas, especificidade do espaço e ganho coletivo permanecem delimitados ou abertos.</p></div>
 </div>
-</div></section><section class="slide " data-id="intervencao" data-section="A escolha experimental" data-title="Steering, prompting e adaptação dos pesos" data-core="true"><div class="slide-body">
-<h2>Steering, prompting e adaptação dos pesos</h2>
-<table class="evidence-table"><thead><tr><th>Intervenção</th><th>O que variamos</th><th>Pergunta relevante</th></tr></thead><tbody>
-<tr><td>Prompt</td><td>Instrução e contexto</td><td>Quanto os bons prompts já conseguem?</td></tr>
-<tr><td>Steering</td><td>Direção, dose, site e duração</td><td>O controle interno acrescenta algo útil?</td></tr>
-<tr><td>Fine-tuning / LoRA</td><td>Uma adaptação aprendida</td><td>Como comparar benefício e custo total?</td></tr>
-</tbody></table>
-<p class="takeaway">Steering permite controlar uma adição interna, mantendo o prompt de avaliação fixo. Superioridade prática exige comparação.</p>
-<p class="support-links"><span>Aprofundar</span> <a href="#ap-experimento-justo">Uma comparação de valor incremental</a></p></div></section><section class="slide " data-id="trajetoria" data-section="O desenho" data-title="Como o desenho foi ficando mais preciso" data-core="true"><div class="slide-body">
+</div></section><section class="slide " data-id="intervencao" data-section="A escolha experimental" data-title="Steering, prompting e adaptação dos pesos" data-core="true"><div class="slide-body ceg-comparison">
+  <header class="ceg-comparison__header"><p class="ceg-comparison__kicker">A escolha experimental</p><h2 class="ceg-comparison__title">Steering, prompting e <span>adaptação dos pesos</span></h2></header>
+  <div class="ceg-comparison__interactive" hidden>
+    <div class="ceg-comparison__controls">
+      <p class="ceg-comparison__control-label">O ponto manipulado diretamente</p>
+      <div class="ceg-comparison__selectors" role="group" aria-label="Intervenções para comparar"><button type="button" data-comparison-select="prompt" aria-pressed="true">Prompt</button><button type="button" data-comparison-select="steering" aria-pressed="false">Steering</button><button type="button" data-comparison-select="lora" aria-pressed="false">LoRA · proposto</button></div>
+      <p class="ceg-comparison__description" data-comparison-value="description">Varia o texto; mantém os pesos fixos. O prompt também muda as ativações.</p>
+      <p class="ceg-comparison__scope" data-comparison-value="scope">Prompt e steering podem ser combinados. O destaque indica o ponto manipulado diretamente.</p>
+    </div>
+    <div class="ceg-comparison__canvas">
+      <svg class="ceg-comparison__diagram" viewBox="0 0 1120 410" role="img" aria-labelledby="comparison-diagram-title comparison-diagram-desc">
+        <title id="comparison-diagram-title">Três maneiras de intervir no mesmo fluxo</title>
+        <desc id="comparison-diagram-desc" data-comparison-value="diagram">Prompt: variamos instrução ou contexto na entrada. Os pesos ficam fixos; as ativações também mudam.</desc>
+        <text x="22" y="112" class="comparison-svg-title">Entrada</text><text x="390" y="112" class="comparison-svg-title">Pesos base</text><text x="858" y="112" class="comparison-svg-title">Residual</text>
+        <g class="comparison-node is-active" data-comparison-node="prompt"><rect x="22" y="154" width="283" height="120"/><text x="163.5" y="202" text-anchor="middle" class="comparison-svg-label" data-comparison-value="input">Instrução / contexto</text><text x="163.5" y="248" text-anchor="middle" class="comparison-svg-label">x₁ … xP</text></g>
+        <path class="comparison-arrow" d="M318 214H374m-11-8 11 8-11 8"/>
+        <g class="comparison-node" data-comparison-node="lora"><rect x="390" y="154" width="352" height="120"/><text x="566" y="225" text-anchor="middle" class="comparison-svg-formula" data-comparison-value="weights">W₀ fixo</text></g>
+        <path class="comparison-arrow" d="M755 214H824m-11-8 11 8-11 8"/>
+        <g class="comparison-node" data-comparison-node="steering"><rect x="840" y="154" width="204" height="120"/><text x="942" y="225" text-anchor="middle" class="comparison-svg-formula" data-comparison-value="residual">h</text></g>
+        <path class="comparison-arrow" d="M1056 214H1104m-11-8 11 8-11 8"/>
+        <text x="1104" y="319" text-anchor="end" class="comparison-svg-small comparison-muted">Blocos seguintes → saída</text>
+        <text x="22" y="319" class="comparison-svg-small comparison-muted" data-comparison-value="inputCaption">Texto de avaliação varia</text>
+        <text x="390" y="319" class="comparison-svg-small comparison-muted" data-comparison-value="weightsCaption">Sem atualização de pesos</text>
+        <text x="1104" y="365" text-anchor="end" class="comparison-svg-small comparison-muted" data-comparison-value="residualCaption">Ativações dependem da entrada</text>
+        <g class="comparison-adapter" data-comparison-adapter hidden><rect x="421" y="12" width="290" height="62"/><text x="566" y="54" text-anchor="middle" class="comparison-svg-title">+ BA aprendido</text><path d="M566 82V140m-8-11 8 11 8-11"/></g>
+        <g class="comparison-delta" data-comparison-delta hidden><text x="1018" y="45" text-anchor="middle" class="comparison-svg-formula comparison-blue">+ δ</text><path d="M1018 61V140m-8-11 8 11 8-11"/></g>
+      </svg>
+      <p class="ceg-comparison__takeaway">Steering permite controlar uma adição interna, mantendo o prompt de avaliação fixo. Superioridade prática exige comparação.</p>
+    </div>
+  </div>
+  <div class="ceg-comparison__fallback">
+    <div class="ceg-comparison__table-region" tabindex="0" role="region" aria-label="Comparação conceitual de prompt, steering e LoRA, tabela com rolagem horizontal"><table class="ceg-comparison__table"><thead><tr><th>Intervenção</th><th>O que muda diretamente</th><th>Pesos e escopo</th></tr></thead><tbody><tr><th>Prompt</th><td>Instrução e contexto na sequência de entrada; também alteram ativações</td><td>Pesos fixos. Pode ser combinado com steering.</td></tr><tr><th>Steering</th><td>Adição nominal na saída do bloco 27; direção, dose, site e duração controlados</td><td>Pesos fixos. Vetor de contrastes de prompts; texto baseline fixo na avaliação.</td></tr><tr><th>LoRA</th><td>Adaptação aprendida ΔW = BA, escala absorvida; efeito BAx depende da representação x</td><td>Base compartilhada e fixa; peso efetivo W₀ + BA. Comparador proposto, não executado aqui.</td></tr></tbody></table></div>
+    <p class="ceg-comparison__scroll-hint">Deslize a tabela para consultar o escopo de cada intervenção. Com a tabela em foco, use as setas.</p>
+    <p>Os métodos podem ser combinados; políticas de prompts também admitem famílias contínuas. Compare baseline repetido, prompts fortes, steering e adaptações, contando construção, seleção, treinamento e inferência.</p>
+    <p class="ceg-comparison__takeaway">Steering permite controlar uma adição interna, mantendo o prompt de avaliação fixo. Superioridade prática exige comparação.</p>
+  </div>
+  <p class="ceg-comparison__foot"><strong>Comparação conceitual; LoRA não foi executado neste projeto.</strong> O benefício incremental exige comparar prompts fortes, steering e adaptações sob orçamento definido. <span class="ceg-comparison__support"><a href="#ap-experimento-justo">Apoio: experimento justo ↗</a></span></p>
+  <p class="ceg-comparison__sr" data-comparison-value="status" role="status" aria-live="polite"></p>
+</div></section><section class="slide " data-id="trajetoria" data-section="O desenho" data-title="Como o desenho foi ficando mais preciso" data-core="true"><div class="slide-body">
 <h2>Como o desenho foi ficando mais preciso</h2>
 <table class="evidence-table"><thead><tr><th>Problema encontrado</th><th>Resposta experimental</th></tr></thead><tbody>
 <tr><td>Artefatos da superfície de resposta</td><td>Revisão do instrumento e avaliação semântica</td></tr>
@@ -1497,20 +1835,174 @@ body.deck-high-contrast { --paper: #fffef7; --paper-deep: #e7e6de; --paper-white
 <tr><td>Hipóteses</td><td>Manter e eliminar candidatos</td><td>Assumir o primeiro plausível</td></tr>
 </tbody></table>
 <p class="source-line">Paráfrases para leitura. Os prompts completos e seus bytes definem o experimento.</p>
-<p class="support-links"><span>Aprofundar</span> <a href="#ap-q1-fonte">A direção confirmatória de Q1</a></p></div></section><section class="slide " data-id="captura" data-section="O desenho" data-title="Duas posições de captura" data-core="true"><div class="slide-body">
-<h2>Duas posições de captura</h2>
-<div class="split"><div><p class="eyebrow">Prompt boundary</p><p class="lead">Último token do prompt renderizado</p></div>
-<div><p class="eyebrow">Execution boundary</p><p class="lead">Último token de uma continuação fixa, por teacher forcing</p></div></div>
-<blockquote>I will now apply the requested reasoning policy to the program before committing to one answer.</blockquote>
-<p class="takeaway">Quatro contrastes × duas posições = oito estimadores de direção.</p>
-</div></section><section class="slide " data-id="subespaco" data-section="O desenho" data-title="Das ativações ao subespaço de intervenção" data-core="true"><div class="slide-body">
-<h2>Das ativações ao subespaço de intervenção</h2>
-<div class="equation">u<sub>f,s</sub> = unit [ média<sub>i</sub> (h<sup>+</sup><sub>i,f,s</sub> − h<sup>−</sup><sub>i,f,s</sub>) ]</div>
-<p>Oito vetores em ℝ<sup>4096</sup> formam uma matriz de posto 8.</p>
-<div class="equation">U = LΣR<sup>T</sup> &emsp; Q<sup>T</sup>Q = I &emsp; v<sub>j</sub> = Qc<sub>j</sub></div>
-<p class="lead">Amostramos c<sub>j</sub> unitários dentro desse espaço.</p>
-<p class="takeaway">As direções novas são combinações no subespaço; 31 direções não significam 31 conceitos.</p>
-<p class="support-links"><span>Aprofundar</span> <a href="#ap-geometrias">A1 e A2: construções operacionais</a></p></div></section><section class="slide " data-id="operador" data-section="O desenho" data-title="Site, dose e duração" data-core="true"><div class="slide-body ceg-scene" data-ceg-scene="operator">
+<p class="support-links"><span>Aprofundar</span> <a href="#ap-q1-fonte">A direção confirmatória de Q1</a></p></div></section><section class="slide " data-id="captura" data-section="O desenho" data-title="Duas posições de captura" data-core="true"><div class="slide-body ceg-construction" data-ceg-construction="capture">
+  <header class="ceg-construction__header">
+    <p class="ceg-construction__kicker">Construção das fontes · Q2</p>
+    <h2 class="ceg-construction__title">Duas posições de <span>captura</span></h2>
+  </header>
+  <div class="ceg-construction__interactive" hidden>
+    <div class="ceg-construction__controls">
+      <h3 data-construction-value="capture-label">Prompt boundary</h3>
+      <p class="ceg-construction__description" data-construction-value="capture-description">Último token do prompt renderizado, em cada condição.</p>
+      <button type="button" data-capture-select="prompt" aria-pressed="true">Prompt boundary</button>
+      <button type="button" data-capture-select="execution" aria-pressed="false">Execution boundary</button>
+      <p class="ceg-construction__scope">Uma forward de sequência completa, <strong>sem cache</strong>, por condição.<br>Não há geração livre.</p>
+    </div>
+    <div class="ceg-construction__canvas">
+      <svg class="ceg-construction__diagram" viewBox="0 0 1120 385" role="img" aria-labelledby="construction-capture-title construction-capture-desc">
+        <title id="construction-capture-title">Duas condições do mesmo problema e duas posições de leitura do estado</title>
+        <desc id="construction-capture-desc">As instruções positiva e negativa podem gerar prompts de comprimentos diferentes. A mesma continuação fixa teacher-forced é anexada a cada prompt. Prompt boundary seleciona o último token de cada prompt; execution boundary seleciona o último token da continuação fixa. As capturas h mais e h menos são estados do mesmo problema, família e posição. O esquema não representa tokens reais nem comprimentos medidos.</desc>
+        <text x="18" y="30" class="cc-svg-title">Mesmo problema i · instruções contrastivas</text>
+        <text x="18" y="82" class="cc-svg-label cc-blue">Condição +</text>
+        <text x="180" y="82" class="cc-svg-small cc-muted">Prompt renderizado</text>
+        <text x="578" y="82" class="cc-svg-small cc-muted">Continuação fixa</text>
+        <g class="cc-token"><rect x="180" y="103" width="72" height="57"/><text x="216" y="142">x₁⁺</text></g>
+        <text x="300" y="142" class="cc-svg-title">…</text>
+        <g class="cc-token is-active" data-capture-position="prompt"><rect x="402" y="103" width="94" height="57"/><text x="449" y="142">xP⁺</text></g>
+        <path class="cc-arrow" d="M506 132H559m-9-7 9 7-9 7"/>
+        <g class="cc-token"><rect x="578" y="103" width="72" height="57"/><text x="614" y="142">t₁</text></g>
+        <text x="694" y="142" class="cc-svg-title">…</text>
+        <g class="cc-token" data-capture-position="execution"><rect x="765" y="103" width="82" height="57"/><text x="806" y="142">tT</text></g>
+        <path class="cc-capture-link" data-capture-link="prompt" d="M449 165V190H958m-9-7 9 7-9 7"/>
+        <path class="cc-capture-link" data-capture-link="execution" d="M806 165V190H958m-9-7 9 7-9 7" hidden/>
+        <text x="979" y="201" class="cc-svg-formula cc-blue">hᵢ⁺</text>
+        <text x="18" y="256" class="cc-svg-label cc-blue">Condição −</text>
+        <text x="180" y="256" class="cc-svg-small cc-muted">Prompt renderizado</text>
+        <text x="496" y="256" class="cc-svg-small cc-muted">Continuação fixa</text>
+        <g class="cc-token"><rect x="180" y="277" width="72" height="57"/><text x="216" y="316">x₁⁻</text></g>
+        <text x="286" y="316" class="cc-svg-title">…</text>
+        <g class="cc-token is-active" data-capture-position="prompt"><rect x="320" y="277" width="94" height="57"/><text x="367" y="316">xP⁻</text></g>
+        <path class="cc-arrow" d="M424 306H477m-9-7 9 7-9 7"/>
+        <g class="cc-token"><rect x="496" y="277" width="72" height="57"/><text x="532" y="316">t₁</text></g>
+        <text x="612" y="316" class="cc-svg-title">…</text>
+        <g class="cc-token" data-capture-position="execution"><rect x="683" y="277" width="82" height="57"/><text x="724" y="316">tT</text></g>
+        <path class="cc-capture-link" data-capture-link="prompt" d="M367 339V364H958m-9-7 9 7-9 7"/>
+        <path class="cc-capture-link" data-capture-link="execution" d="M724 339V364H958m-9-7 9 7-9 7" hidden/>
+        <text x="979" y="375" class="cc-svg-formula cc-blue">hᵢ⁻</text>
+        <text x="978" y="103" class="cc-svg-small cc-muted">f, s fixos</text>
+      </svg>
+      <p class="ceg-construction__teacher"><span class="ceg-construction__teacher-label">Continuação fixa · teacher forcing</span>I will now apply the requested reasoning policy to the program before committing to one answer.</p>
+    </div>
+  </div>
+  <div class="ceg-construction__fallback">
+    <p>As instruções +/− são system prompts para o mesmo problema i e família f. Cada prompt tem comprimento P<sub>±</sub> próprio; a continuação fixa tem T tokens. Capturamos a saída do bloco 27.</p>
+    <div class="ceg-construction__table-region" tabindex="0" role="region" aria-label="Condições e posições de captura, tabela com rolagem horizontal">
+      <table class="ceg-construction__table"><thead><tr><th>Condição</th><th>Sequência processada</th><th>Prompt boundary</th><th>Execution boundary</th></tr></thead><tbody><tr><th>+</th><td>x₁⁺ … xP⁺ · t₁ … tT</td><td>h<sup>+</sup> em xP⁺<br>Índice P<sub>+</sub> − 1</td><td>h<sup>+</sup> em tT<br>Índice P<sub>+</sub> + T − 1</td></tr><tr><th>−</th><td>x₁⁻ … xP⁻ · t₁ … tT</td><td>h<sup>−</sup> em xP⁻<br>Índice P<sub>−</sub> − 1</td><td>h<sup>−</sup> em tT<br>Índice P<sub>−</sub> + T − 1</td></tr></tbody></table>
+    </div>
+    <p class="ceg-construction__scroll-hint">Deslize a tabela para consultar as duas posições. Com a tabela em foco, use as setas.</p>
+    <div class="ceg-construction__code-region" tabindex="0" role="region" aria-label="Tokenização do texto fixo e concatenação dos IDs, com rolagem horizontal"><code>teacher_ids = encode(text, add_special_tokens=False)<br>full_ids = prompt_ids + teacher_ids</code></div>
+    <p class="ceg-construction__teacher"><span class="ceg-construction__teacher-label">Continuação fixa · teacher forcing</span>I will now apply the requested reasoning policy to the program before committing to one answer.</p>
+    <p>Índices com base zero. Uma forward completa, sem cache, por condição captura ambas as posições. Não há geração livre nem retokenização de uma string combinada.</p>
+  </div>
+  <p class="ceg-construction__foot"><strong>Quatro famílias × duas posições = oito fontes.</strong> Esquema de posições, sem tokens ou comprimentos medidos. Captura não é fase nem site de aplicação. <a href="https://github.com/ACS-USP/causal-epistemic-geometry/blob/a230642be49ec4544b7c28a24951b594656b522c/scripts/run_q2_v3.py#L259-L302" target="_blank" rel="noopener">Captura Q2, linhas 259–302</a></p>
+  <p class="ceg-construction__sr" data-construction-status role="status" aria-live="polite"></p>
+</div></section><section class="slide " data-id="subespaco" data-section="O desenho" data-title="Das ativações ao subespaço de intervenção" data-core="true"><div class="slide-body ceg-construction" data-ceg-construction="subspace">
+  <header class="ceg-construction__header">
+    <p class="ceg-construction__kicker">Construção do laboratório · Q2</p>
+    <h2 class="ceg-construction__title">Das ativações ao <span>subespaço de intervenção</span></h2>
+  </header>
+  <div class="ceg-construction__interactive" hidden>
+    <div class="ceg-construction__controls">
+      <p class="ceg-construction__step">Etapa <span data-construction-value="step">01 / 04</span></p>
+      <h3 data-construction-value="step-title">Diferenças pareadas</h3>
+      <p class="ceg-construction__description" data-construction-value="step-description">Para cada família e posição, subtraímos h⁻ de h⁺ nos mesmos 24 problemas.</p>
+      <button class="ceg-construction__primary" type="button" data-construction-action="next">Próximo</button>
+      <div class="ceg-construction__buttons"><button type="button" data-construction-action="previous" disabled>Anterior</button><button type="button" data-construction-action="reset">Reiniciar</button></div>
+      <p class="ceg-construction__scope">Quatro famílias × duas posições.<br>Oito fontes no residual de dimensão 4096.</p>
+    </div>
+    <div class="ceg-construction__canvas">
+      <div class="ceg-construction__stage-nav" aria-label="Etapas da construção"><span data-subspace-nav="0" class="is-active" aria-current="step">1 · Pares</span><span data-subspace-nav="1">2 · Fonte unitária</span><span data-subspace-nav="2">3 · Base SVD</span><span data-subspace-nav="3">4 · Combinação</span></div>
+      <div class="ceg-construction__panel" data-subspace-panel="0">
+        <svg class="ceg-construction__diagram" viewBox="0 0 1120 470" role="img" aria-labelledby="construction-subspace-1-title construction-subspace-1-desc">
+          <title id="construction-subspace-1-title">Diferenças pareadas nas ativações de 24 problemas</title>
+          <desc id="construction-subspace-1-desc">Para uma família e posição de captura fixas, cada um dos mesmos 24 problemas fornece h mais e h menos. A diferença d i é h mais menos h menos, no espaço de 4096 coordenadas. Apenas símbolos, sem ativações medidas.</desc>
+          <text x="20" y="34" class="cc-svg-title">Uma família f e uma posição s, por vez</text>
+          <text x="180" y="105" text-anchor="middle" class="cc-svg-label cc-muted">Condição +</text><text x="545" y="105" text-anchor="middle" class="cc-svg-label cc-muted">Condição −</text><text x="925" y="105" text-anchor="middle" class="cc-svg-label cc-blue">Diferença pareada</text>
+          <path class="cc-rule" d="M20 128H1100"/>
+          <text x="20" y="191" class="cc-svg-label cc-muted">i = 1</text><text x="180" y="191" text-anchor="middle" class="cc-svg-formula">h₁⁺</text><text x="365" y="191" text-anchor="middle" class="cc-svg-formula">−</text><text x="545" y="191" text-anchor="middle" class="cc-svg-formula">h₁⁻</text><path class="cc-arrow" d="M666 179H762m-10-8 10 8-10 8"/><text x="925" y="191" text-anchor="middle" class="cc-svg-formula cc-blue">d₁</text>
+          <text x="20" y="265" class="cc-svg-label cc-muted">i = 2</text><text x="180" y="265" text-anchor="middle" class="cc-svg-formula">h₂⁺</text><text x="365" y="265" text-anchor="middle" class="cc-svg-formula">−</text><text x="545" y="265" text-anchor="middle" class="cc-svg-formula">h₂⁻</text><path class="cc-arrow" d="M666 253H762m-10-8 10 8-10 8"/><text x="925" y="265" text-anchor="middle" class="cc-svg-formula cc-blue">d₂</text>
+          <text x="180" y="326" text-anchor="middle" class="cc-svg-formula cc-muted">⋮</text><text x="545" y="326" text-anchor="middle" class="cc-svg-formula cc-muted">⋮</text><text x="925" y="326" text-anchor="middle" class="cc-svg-formula cc-muted">⋮</text>
+          <text x="20" y="387" class="cc-svg-label cc-muted">i = 24</text><text x="180" y="387" text-anchor="middle" class="cc-svg-formula">h₂₄⁺</text><text x="365" y="387" text-anchor="middle" class="cc-svg-formula">−</text><text x="545" y="387" text-anchor="middle" class="cc-svg-formula">h₂₄⁻</text><path class="cc-arrow" d="M666 375H762m-10-8 10 8-10 8"/><text x="925" y="387" text-anchor="middle" class="cc-svg-formula cc-blue">d₂₄</text>
+          <text x="1100" y="459" text-anchor="end" class="cc-svg-label cc-muted">hᵢ⁺, hᵢ⁻, dᵢ ∈ ℝ⁴⁰⁹⁶ · f, s fixos</text>
+        </svg>
+      </div>
+      <div class="ceg-construction__panel" data-subspace-panel="1" hidden>
+        <svg class="ceg-construction__diagram" viewBox="0 0 1120 470" role="img" aria-labelledby="construction-subspace-2-title construction-subspace-2-desc">
+          <title id="construction-subspace-2-title">Primeiro média pareada, depois normalização unitária</title>
+          <desc id="construction-subspace-2-desc">A média de 24 diferenças é d barra. A fonte u f s é d barra dividida por sua norma L2. Não se calcula a média de diferenças previamente normalizadas. Quatro famílias em duas posições produzem oito fontes unitárias.</desc>
+          <text x="20" y="34" class="cc-svg-title">A ordem das duas operações define a fonte</text>
+          <text x="20" y="114" class="cc-svg-label cc-muted">24 diferenças</text>
+          <text x="20" y="176" class="cc-svg-formula">d₁, d₂, …, d₂₄</text>
+          <path class="cc-arrow" d="M195 205V240m-8-11 8 11 8-11"/>
+          <text x="20" y="282" class="cc-svg-label cc-muted">Média pareada</text>
+          <text x="20" y="338" class="cc-svg-formula">d̄ = (1/24) Σᵢ dᵢ</text>
+          <path class="cc-arrow" d="M435 326H510m-11-8 11 8-11 8"/>
+          <path class="cc-bracket" d="M550 203H533V421H550M1018 203H1035V421H1018"/>
+          <text x="784" y="250" text-anchor="middle" class="cc-svg-title cc-blue">Normalização L2</text>
+          <text x="784" y="338" text-anchor="middle" class="cc-svg-formula cc-blue">u<tspan baseline-shift="sub" font-size="24">f,s</tspan> = d̄ / ‖d̄‖₂</text>
+          <text x="784" y="397" text-anchor="middle" class="cc-svg-label">‖u<tspan baseline-shift="sub" font-size="18">f,s</tspan>‖₂ = 1</text>
+          <text x="1100" y="453" text-anchor="end" class="cc-svg-label cc-muted">Primeiro a média. Só então a norma.</text>
+        </svg>
+      </div>
+      <div class="ceg-construction__panel" data-subspace-panel="2" hidden>
+        <svg class="ceg-construction__diagram" viewBox="0 0 1120 470" role="img" aria-labelledby="construction-subspace-3-title construction-subspace-3-desc">
+          <title id="construction-subspace-3-title">Oito colunas de fontes e uma base ortonormal obtida por SVD</title>
+          <desc id="construction-subspace-3-desc">U tem 4096 linhas e oito colunas unitárias de fontes, que não precisam ser ortogonais. A SVD U igual L Sigma R transposta fornece as colunas retidas de L como Q. O posto observado foi oito. Q tem 4096 por oito e Q transposta Q é identidade. Barras esquemáticas são colunas de matrizes; não são raios num plano nem componentes medidas.</desc>
+          <text x="70" y="38" class="cc-svg-title">Fontes unitárias</text><text x="724" y="38" class="cc-svg-title cc-blue">Base ortonormal</text>
+          <text x="70" y="91" class="cc-svg-label cc-muted">U ∈ ℝ⁴⁰⁹⁶ˣ⁸</text><text x="724" y="91" class="cc-svg-label cc-blue">Q ∈ ℝ⁴⁰⁹⁶ˣ⁸</text>
+          <path class="cc-bracket" d="M68 125H51V323H68M385 125H402V323H385"/>
+          <g><rect class="cc-column" x="80" y="125" width="24" height="198"/><rect class="cc-column" x="118" y="125" width="24" height="198"/><rect class="cc-column" x="156" y="125" width="24" height="198"/><rect class="cc-column" x="194" y="125" width="24" height="198"/><rect class="cc-column" x="232" y="125" width="24" height="198"/><rect class="cc-column" x="270" y="125" width="24" height="198"/><rect class="cc-column" x="308" y="125" width="24" height="198"/><rect class="cc-column" x="346" y="125" width="24" height="198"/></g>
+          <text x="92" y="359" text-anchor="middle" class="cc-svg-label">u₁</text><text x="167" y="359" text-anchor="middle" class="cc-svg-label">…</text><text x="358" y="359" text-anchor="middle" class="cc-svg-label">u₈</text>
+          <path class="cc-arrow" d="M443 218H643m-12-9 12 9-12 9"/>
+          <text x="543" y="181" text-anchor="middle" class="cc-svg-title cc-blue">SVD</text>
+          <text x="543" y="280" text-anchor="middle" class="cc-svg-label">U = LΣRᵀ</text>
+          <text x="543" y="328" text-anchor="middle" class="cc-svg-small cc-muted">Posto observado: 8</text>
+          <text x="543" y="377" text-anchor="middle" class="cc-svg-small cc-muted">σₖ / σ₁ ≥ 10⁻⁶</text>
+          <path class="cc-bracket" d="M722 125H705V323H722M1039 125H1056V323H1039"/>
+          <g><rect class="cc-column cc-active" x="734" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="772" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="810" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="848" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="886" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="924" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="962" y="125" width="24" height="198"/><rect class="cc-column cc-active" x="1000" y="125" width="24" height="198"/></g>
+          <text x="746" y="359" text-anchor="middle" class="cc-svg-label cc-blue">q₁</text><text x="821" y="359" text-anchor="middle" class="cc-svg-label cc-blue">…</text><text x="1012" y="359" text-anchor="middle" class="cc-svg-label cc-blue">q₈</text>
+          <text x="70" y="438" class="cc-svg-label cc-muted">U não precisa ter colunas ortogonais.</text><text x="724" y="438" class="cc-svg-formula cc-blue">QᵀQ = I₈</text>
+        </svg>
+      </div>
+      <div class="ceg-construction__panel" data-subspace-panel="3" hidden>
+        <svg class="ceg-construction__diagram" viewBox="0 0 1120 470" role="img" aria-labelledby="construction-subspace-4-title construction-subspace-4-desc">
+          <title id="construction-subspace-4-title">Coeficientes gaussianos normalizados e uma direção no subespaço</title>
+          <desc id="construction-subspace-4-desc">O procedimento histórico sorteia g de uma normal padrão em oito dimensões, normaliza c igual g dividido pela norma e mapeia v igual Q c. Como Q é ortonormal, c e v têm norma um. A isotropia vale apenas dentro desse subespaço. Este slide apenas mostra a distribuição do procedimento, sem um novo sorteio ou coeficientes numéricos.</desc>
+          <text x="20" y="38" class="cc-svg-title">Procedimento de amostragem no espaço retido</text>
+          <text x="195" y="111" text-anchor="middle" class="cc-svg-formula">gⱼ ∼ N(0, I₈)</text>
+          <path class="cc-bracket" d="M120 149H105V341H120M270 149H285V341H270"/>
+          <text x="195" y="192" text-anchor="middle" class="cc-svg-label">gⱼ₁</text><text x="195" y="240" text-anchor="middle" class="cc-svg-label">gⱼ₂</text><text x="195" y="283" text-anchor="middle" class="cc-svg-label">⋮</text><text x="195" y="327" text-anchor="middle" class="cc-svg-label">gⱼ₈</text>
+          <path class="cc-arrow" d="M330 245H443m-12-9 12 9-12 9"/>
+          <text x="385" y="208" text-anchor="middle" class="cc-svg-small cc-muted">Normalizar</text>
+          <text x="580" y="111" text-anchor="middle" class="cc-svg-formula cc-blue">cⱼ = gⱼ / ‖gⱼ‖₂</text>
+          <path class="cc-bracket" d="M510 149H495V341H510M650 149H665V341H650"/>
+          <text x="580" y="192" text-anchor="middle" class="cc-svg-label cc-blue">cⱼ₁</text><text x="580" y="240" text-anchor="middle" class="cc-svg-label cc-blue">cⱼ₂</text><text x="580" y="283" text-anchor="middle" class="cc-svg-label cc-blue">⋮</text><text x="580" y="327" text-anchor="middle" class="cc-svg-label cc-blue">cⱼ₈</text>
+          <path class="cc-arrow" d="M705 245H818m-12-9 12 9-12 9"/>
+          <text x="762" y="208" text-anchor="middle" class="cc-svg-small cc-muted">Mapear por Q</text>
+          <rect class="cc-column cc-active" x="884" y="149" width="83" height="192"/>
+          <text x="926" y="257" text-anchor="middle" class="cc-svg-formula cc-blue">vⱼ</text>
+          <text x="926" y="111" text-anchor="middle" class="cc-svg-formula cc-blue">vⱼ = Qcⱼ</text>
+          <text x="20" y="418" class="cc-svg-label cc-muted">cⱼ ∈ ℝ⁸ · ‖cⱼ‖₂ = 1</text><text x="734" y="418" class="cc-svg-label cc-blue">vⱼ ∈ ℝ⁴⁰⁹⁶ · ‖vⱼ‖₂ = 1</text>
+          <text x="1100" y="463" text-anchor="end" class="cc-svg-small cc-muted">Lei isotrópica no subespaço, antes da qualificação.</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="ceg-construction__fallback">
+    <div class="ceg-construction__table-region" tabindex="0" role="region" aria-label="Quatro etapas de construção das fontes e do subespaço, tabela com rolagem horizontal">
+      <table class="ceg-construction__table"><thead><tr><th>Etapa</th><th>Operação</th><th>Definição</th></tr></thead><tbody>
+        <tr><th>1 · Pares</th><td>Mesmos 24 problemas, para cada família f e posição s</td><td>d<sub>i,f,s</sub> = h<sup>+</sup><sub>i,f,s</sub> − h<sup>−</sup><sub>i,f,s</sub></td></tr>
+        <tr><th>2 · Fonte unitária</th><td>Média das diferenças, depois normalização L2</td><td>d̄<sub>f,s</sub> = (1/24) Σ<sub>i</sub> d<sub>i,f,s</sub><br>u<sub>f,s</sub> = d̄<sub>f,s</sub> / ‖d̄<sub>f,s</sub>‖₂</td></tr>
+        <tr><th>3 · Base SVD</th><td>Oito fontes em U ∈ ℝ<sup>4096×8</sup>; posto observado 8</td><td>U = LΣR<sup>T</sup>; reter σ<sub>k</sub>/σ<sub>1</sub> ≥ 10<sup>−6</sup><br>Q = L<sub>retido</sub> ∈ ℝ<sup>4096×8</sup>; Q<sup>T</sup>Q = I₈</td></tr>
+        <tr><th>4 · Combinação</th><td>Coeficientes unitários; isotropia apenas no subespaço</td><td>g<sub>j</sub> ∼ N(0, I₈)<br>c<sub>j</sub> = g<sub>j</sub>/‖g<sub>j</sub>‖₂; v<sub>j</sub> = Qc<sub>j</sub></td></tr>
+      </tbody></table>
+    </div>
+    <p class="ceg-construction__scroll-hint">Deslize a tabela para consultar operações e fórmulas. Com a tabela em foco, use as setas.</p>
+    <p>Quatro famílias × duas posições = oito fontes. A média pareada precede a normalização; U não precisa ter colunas ortogonais. Q fornece coordenadas, não significados cognitivos. A lei isotrópica é anterior à qualificação: 40 candidatos sorteados deram 31 direções qualificadas.</p>
+  </div>
+  <p class="ceg-construction__foot"><strong>31 direções não significam 31 conceitos.</strong> 40 candidatos sorteados → 31 qualificados. Esquema de matrizes; sem novo sorteio nem valores medidos. Construção Q2 e fontes imutáveis <span class="ceg-construction__support">· <a href="#ap-geometrias">Geometrias: A0, A1 e A2</a></span></p>
+  <p class="ceg-construction__sr" data-construction-status role="status" aria-live="polite"></p>
+</div></section><section class="slide " data-id="operador" data-section="O desenho" data-title="Site, dose e duração" data-core="true"><div class="slide-body ceg-scene" data-ceg-scene="operator">
   <header class="ceg-scene__header">
     <p class="ceg-scene__kicker">Protocolo de aplicação</p>
     <h2 class="ceg-scene__title">Site, <span>dose</span> e duração</h2>
