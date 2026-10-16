@@ -1,6 +1,6 @@
 # Entropic Session — Activation Steering
 
-Apresentação interativa, versão **2.2**, publicada em:
+Apresentação interativa, versão **2.3**, publicada em:
 
 https://costaleirbag.github.io/ceg-entropic-session/
 
@@ -12,7 +12,7 @@ A apresentação abre no percurso principal de 49 slides. Os 29 apoios adicionai
 ficam disponíveis pelo índice e pelos links de aprofundamento. Setas avançam e
 voltam; I abre o índice; B retorna de um apoio; R alterna a leitura contínua.
 
-A versão 2.2 abre com uma breve história do steering e seus conceitos,
+A versão 2.3 abre com uma breve história do steering e seus conceitos,
 as influências de Beaglehole e Wurgaft, COLD-Steer e comparações recentes com
 prompts. A introdução conduz aos experimentos, com exemplos concretos da tarefa,
 construção das direções, intensidade, repetições e medidas de erros.
